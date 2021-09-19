@@ -149,7 +149,7 @@ It's recommended to select "Notifications for all macros," rather than "Enable a
 
 ![](pics/emails_12.png)
 
-Add the following sub (markdown doesn't support formatting for VBA, )
+Add the following sub (Rmarkdown doesn't support formatting for VBA, so this code chunk may appear in a fairly bland format):
 
 ```{vbscript}
 Private Sub Application_Reminder(ByVal Item As Object)
@@ -187,5 +187,11 @@ End Sub
   
 ```
 
+And voila! Now, the stakeholders will receive a weekly email with the report attached, all without the analyst needing to lift a finger. There are, however, a few caveats worth mentioning:
 
+* You must be logged onto your computer (this won't run automatically while away for vacation!).
+* Outlook must be open, since this is where the macro is stored.
+* Finally, macros must be enabled (and re-enabling must be done every time the computer is restarted).
+
+There may be a quicker/more universal way to automate this process, but in a pinch, this allows for localized automation while keeping everything within your existing company's infrastructure!
 

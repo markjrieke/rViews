@@ -56,21 +56,42 @@ Windows' Task Scheduler is an OS level job scheduler that, as the name suggests,
 
 #### 1. Open the Task Scheduler and select "Create Basic Task"
 
+![](pics/task_scheduler_01.png)
+
 #### 2. Give your task a useful name and description
+
+![](pics/task_scheduler_02.png)
 
 #### 3. Select when the recurring task will run
 
+![](pics/task_scheduler_03.png)
+
+![](pics/task_scheduler_04.png)
+
 #### 4. Select "Start a program" as the task action
+
+![](pics/task_scheduler_05.png)
 
 Later on, we'll use VBA to automatically send emails to avoid any deprecation issues with the "Send an e-mail" function in the scheduler.
 
 #### 5. Enter the path to `Rscript.exe` into the program field and the path to your script into the argument field
 
+![](pics/task_scheduler_06.png)
+
 This is where we tell the Task Scheduler to use R! `Rscript.exe` should be saved under the `R\R-version-you-have-installed\bin` folder. You can likely find the `R` folder under `C:\Program Files\` or `C:\Program Files (x86)\`. This informs your computer to use R to run the script at the path in the argument. 
+
+![](pics/task_scheduler_07.png)
 
 There are a few caveats worth noting:
 
 * Unlike R, Windows uses back slashes in the folder path; be sure the path contains `\` and not `/`!
 * The Task Scheduler can't handle spaces in folder path names - if any of the folders in the path to `Rscript.exe` or your report script contain spaces, be sure to encapsulate with quotations! For example, `C:\Folder Path with Spaces\COVID_script.R` will fail, but `"C:\Folder Path with Spaces\COVID_script.R"` will run.
 
+#### 6. Click Finish
+
+![](pics/task_scheduler_08.png)
+
+Viola! Your R script is now scheduled to run on a recurring basis. You test that the task is setup correctly by highlighting the task and selecting "Run" in the lower right corner of the scheduler window.
+
+![](pics/task_scheduler_09.png)
 

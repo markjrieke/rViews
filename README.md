@@ -205,27 +205,26 @@ Add the following sub (markdown doesn’t support formatting for VBA, )
 ``` vbscript
 Private Sub Application_Reminder(ByVal Item As Object)
 
-'This Sub will be called every time a reminder appears and will turn the 
-'reminder itself into a Microsoft Object called "Item"
+'This Sub will be called every time a reminder appears and will turn the        '
+'reminder itself into a Microsoft Object called "Item"                          '
 
-  'In VBA, each variable and type must be declared.
-  'The email itself must be declared as a new variable of type "MailItem"
+  'In VBA, each variable and type must be declared.                             '
+  'The email itself must be declared as a new variable of type "MailItem"       '
   Dim email_object As MailItem
   
-  'Before going any further, this will check that the reminder is for an
-  'appointment (rather than a meeting or holiday, for example).
+  'Before going any further, this will check that the reminder is for an        '
+  'appointment (rather than a meeting or holiday, for example).                 '
   If Item.MessageClass <> "IPM.Appointment" Then Exit Sub
   
-  'Similarly, if the appointment is not in the Recurring Email category that we
-  'set up earlier, the sub should exit. This ensures that you can still set
-  'uncategorized appointments with reminders without sending off emails 
-  'unintentionally.'
+  'Similarly, if the appointment is not in the Recurring Email category that we '
+  'set up earlier, the sub should exit. This ensures that you can still set     '
+  'uncategorized appointments with reminders without sending off emails         '
+  'unintentionally.                                                             '
   If Item.Categories <> "Recurring Emails" Then Exit Sub
   
-  'Now that the appointment type is confirmed to be in the correct category, 
-  'we can send the email itself.
-  'Using our newly created email_object, the Subject, Recipients, and Attachments 
-  'are pulled from the reminder object (named "Item")
+  'Now that the appointment type is confirmed to be in the correct category, we '
+  'can send the email itself. Using our newly created email_object, the Subject,' 
+  'Recipients, and Attachments are pulled from the reminder object named "Item" '
  
   With email_object
     .Subject = Item.Subject
@@ -236,6 +235,5 @@ Private Sub Application_Reminder(ByVal Item As Object)
   End With
   
 End Sub
-  
   
 ```

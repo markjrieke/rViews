@@ -68,7 +68,7 @@ directory of the project *within* the script itself. When the Task
 Scheduler executes this script, it does so out of a different directory,
 so we need to tell R to change the working directory.
 
-## Running the Task Scheduler
+## Running Scripts with the Task Scheduler
 
 Windows’ Task Scheduler is an OS level job scheduler that, as the name
 suggests, completes tasks based on “triggers” (in this case, we’re using
@@ -128,3 +128,24 @@ test that the task is setup correctly by highlighting the task and
 selecting “Run” in the lower right corner of the scheduler window.
 
 ![](pics/task_scheduler_09.png)
+
+## Automating Emails with VBA
+
+Outlook, unfortunately, doesn’t have a built-in method for sending
+recurring emails. With a bit of VBA, however, we can get around this
+issue. VBA (or, Visual Basic for Applications) is Microsoft’s
+event-driven programming language that runs within each application. To
+automatically send emails on a recurring basis, we’ll setup a recurring
+appointment that will serve as the event causing emails to send. Then,
+we’ll write a macro (VBA’s equivalent to an R script) that will send an
+email every time a reminder for this appointment appears.
+
+#### 1. Create a new recurring appointment
+
+#### 2. Assign the appointment to a new category for sending automated emails
+
+#### 3. Add the Developer tab to Outlook’s ribbon
+
+#### 4. Enable Macros
+
+#### 5. Add the following sub to `ThisOutlookSession`

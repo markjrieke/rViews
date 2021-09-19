@@ -97,12 +97,16 @@ Viola! Your R script is now scheduled to run on a recurring basis. You test that
 
 ## Automating Emails with VBA
 
-Outlook, unfortunately, doesn't have a built-in method for sending recurring emails. With a bit of VBA, however, we can get around this issue. VBA (or, Visual Basic for Applications) is Microsoft's event-driven programming language that runs within each application. To get started, we'll setup a recurring appointment that will serve as the event causing emails to send.
+Outlook, unfortunately, doesn't have a built-in method for sending recurring emails. With a bit of VBA, however, we can get around this issue. VBA (or, Visual Basic for Applications) is Microsoft's event-driven programming language that runs within each application. To automatically send emails on a recurring basis, we'll setup a recurring appointment that will serve as the event causing emails to send. Then, we'll write a macro (VBA's equivalent to an R script) that will send an email every time a reminder for this appointment appears.
 
 #### 1. Create a new recurring appointment
 
 #### 2. Assign the appointment to a new category for sending automated emails
 
-#### 3. 
+#### 3. Add the Developer tab to Outlook's ribbon
+
+#### 4. Enable Macros
+
+#### 5. Add the following sub to `ThisOutlookSession`
 
 

@@ -32,3 +32,33 @@ In this article, we’ll look at three basic workflows:
 > VBA](https://www.datanumen.com/blogs/auto-send-recurring-email-periodically-outlook-vba/).
 > This article merges the two concepts and points out additional
 > stumbling blocks, but the original articles are well worth viewing.
+
+## Generating a Report with R
+
+Suppose we want to create a .csv file containing a weekly summary of the
+daily new COVID cases in Texas. Our script to generate the report may
+look something like this:
+
+``` r
+library(dplyr)
+library(readr)
+
+# set working directory
+setwd("C:/path/to/your/directory")
+
+# read in data
+nyt_covid <- read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv")
+
+# get texas' daily new cases in the past week
+nyt_covid <- 
+  nyt_covid %>%
+  group_by(state) %>%
+  mutate(new_cases = cases - lag(cases),
+         new_deaths = deaths - lag(deaths)) %>%
+  filter(date >= Sys.Date() - 7,
+         state == "Texas")
+
+# save file
+nyt_covid %>%
+  write_csv("new_cases_tx.csv")
+```

@@ -142,10 +142,100 @@ email every time a reminder for this appointment appears.
 
 #### 1. Create a new recurring appointment
 
+![](pics/emails_01.png)
+
+![](pics/emails_02.png)
+
+In this case, we’ll use several fields very specifically to be picked up
+by the macro:
+
+-   The subject of the appointment will become the subject of the
+    recurring email.
+-   Add any recipients to the Location field. If sending to multiple
+    recipients, separate each with a `;` (e.g.,
+    `recipient1@email.com;recipient2@email.com`)
+-   Add the folder path for the report to the appointment body.
+
+![](pics/emails_03.png)
+
+Be sure to set this appointment for *after* the script is scheduled to
+run via the Task Scheduler!
+
+![](pics/emails_04.png)
+
+Finally, be sure that there is a reminder set - the reminder
+notification is what will actually trigger the macro to run.
+
 #### 2. Assign the appointment to a new category for sending automated emails
+
+![](pics/emails_05.png)
+
+![](pics/emails_06.png)
+
+![](pics/emails_07.png)
+
+![](pics/emails_08.png)
 
 #### 3. Add the Developer tab to Outlook’s ribbon
 
+![](pics/emails_09.png)
+
+Outlook Options can be found under File &gt; Options.
+
 #### 4. Enable Macros
 
+![](pics/emails_10.png)
+
+![](pics/emails_11.png)
+
+It’s recommended to select “Notifications for all macros,” rather than
+“Enable all macros.” This will require that macros are re-enabled every
+time Outlook restarts but, as the note in the window suggests, will
+prevent potentially dangerous code from running on your computer without
+your knowledge.
+
 #### 5. Add the following sub to `ThisOutlookSession`
+
+![](pics/emails_13.png)
+
+![](pics/emails_12.png)
+
+Add the following sub (markdown doesn’t support formatting for VBA, )
+
+``` vbscript
+Private Sub Application_Reminder(ByVal Item As Object)
+
+'This Sub will be called every time a reminder appears and will turn the 
+'reminder itself into a Microsoft Object called "Item"
+
+  'In VBA, each variable and type must be declared.
+  'The email itself must be declared as a new variable of type "MailItem"
+  Dim email_object As MailItem
+  
+  'Before going any further, this will check that the reminder is for an
+  'appointment (rather than a meeting or holiday, for example).
+  If Item.MessageClass <> "IPM.Appointment" Then Exit Sub
+  
+  'Similarly, if the appointment is not in the Recurring Email category that we
+  'set up earlier, the sub should exit. This ensures that you can still set
+  'uncategorized appointments with reminders without sending off emails 
+  'unintentionally.'
+  If Item.Categories <> "Recurring Emails" Then Exit Sub
+  
+  'Now that the appointment type is confirmed to be in the correct category, 
+  'we can send the email itself.
+  'Using our newly created email_object, the Subject, Recipients, and Attachments 
+  'are pulled from the reminder object (named "Item")
+ 
+  With email_object
+    .Subject = Item.Subject
+    .To = Item.Location
+    .HTMLBody = "<HTML><BODY>This is an automated email report.</BODY></HTML>"
+    .Attachments.Add Item.Body
+    .Send
+  End With
+  
+End Sub
+  
+  
+```

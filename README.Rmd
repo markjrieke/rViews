@@ -50,4 +50,27 @@ nyt_covid %>%
 
 It may seem out out of place, but we need to explicitly set the working directory of the project *within* the script itself. When the Task Scheduler executes this script, it does so out of a different directory, so we need to tell R to change the working directory. 
 
+## Running the Task Scheduler
+
+Windows' Task Scheduler is an OS level job scheduler that, as the name suggests, completes tasks based on "triggers" (in this case, we're using the system time as a trigger, but other options are available in the scheduler). To setup a task that runs the COVID script weekly, follow these instructions:
+
+#### 1. Open the Task Scheduler and select "Create Basic Task"
+
+#### 2. Give your task a useful name and description
+
+#### 3. Select when the recurring task will run
+
+#### 4. Select "Start a program" as the task action
+
+Later on, we'll use VBA to automatically send emails to avoid any deprecation issues with the "Send an e-mail" function in the scheduler.
+
+#### 5. Enter the path to `Rscript.exe` into the program field and the path to your script into the argument field
+
+This is where we tell the Task Scheduler to use R! `Rscript.exe` should be saved under the `R\R-version-you-have-installed\bin` folder. You can likely find the `R` folder under `C:\Program Files\` or `C:\Program Files (x86)\`. This informs your computer to use R to run the script at the path in the argument. 
+
+There are a few caveats worth noting:
+
+* Unlike R, Windows uses back slashes in the folder path; be sure the path contains `\` and not `/`!
+* The Task Scheduler can't handle spaces in folder path names - if any of the folders in the path to `Rscript.exe` or your report script contain spaces, be sure to encapsulate with quotations! For example, `C:\Folder Path with Spaces\COVID_script.R` will fail, but `"C:\Folder Path with Spaces\COVID_script.R"` will run.
+
 

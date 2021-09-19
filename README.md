@@ -18,9 +18,11 @@ automation of report building and emailing via Outlook. The solution?
 Convincing R, VBA, and Window’s Task Scheduler to work together to meet
 your automation needs.
 
-In this article, we’ll look at three basic workflows: \* Generating a
-report with R \* Automatically running a script with the Task Scheduler
-\* Automatically sending emails via Outlook with VBA
+In this article, we’ll look at three basic workflows:
+
+-   Generating a report with R
+-   Automatically running a script with the Task Scheduler
+-   Automatically sneding emaisl via Outlook with VBA
 
 This article is heavily informed by PERSON LINK and PERSON LINK articles
 on the Task Scheduler and VBA in Outlook, with some stumbling blocks

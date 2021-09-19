@@ -2,7 +2,7 @@
 title: "README"
 author: "Mark Rieke"
 date: "9/19/2021"
-output: html_document
+output: rmarkdown::github_document
 ---
 
 ```{r setup, include=FALSE}

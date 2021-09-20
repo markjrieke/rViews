@@ -174,7 +174,11 @@ Private Sub Application_Reminder(ByVal Item As Object)
   'Now that the appointment type is confirmed to be in the correct category, we '
   'can send the email itself. Using our newly created email_object, the Subject,' 
   'Recipients, and Attachments are pulled from the reminder object named "Item" '
- 
+  
+  'First we need to create a new email object                                   '
+  Set email_object = Outlook.Application.CreateItem(olMailItem)
+  
+  'Now we can draft and send!                                                   '
   With email_object
     .Subject = Item.Subject
     .To = Item.Location

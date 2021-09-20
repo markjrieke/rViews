@@ -124,7 +124,7 @@ There are a few caveats worth noting:
 ![](pics/task_scheduler_08.png)
 
 Viola! Your R script is now scheduled to run on a recurring basis. You
-test that the task is setup correctly by highlighting the task and
+can test that the task is setup correctly by highlighting the task and
 selecting “Run” in the lower right corner of the scheduler window.
 
 ![](pics/task_scheduler_09.png)
